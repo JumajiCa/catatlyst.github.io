@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<BaseLayout title="Blog" description="Read the latest research updates and news from Catalyst Club.">
+  <section class="blog-section">
+    <div class="container">
+      <h1 class="section-title">Blog</h1>
+      <p class="section-subtitle">Research write-ups, project updates, and club news.</p>
+      <div class="posts-list">
+        {posts.map(post => (
+          <a href={`${base}blog/${post.id}`} class="post-card">
+            <div class="post-meta">
+              <time datetime={post.data.date}>
+                {new Date(post.data.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <span class="post-author">by {post.data.author}</span>
+            </div>
+            <h2 class="post-title">{post.data.title}</h2>
+            <p class="post-excerpt">{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .post-card {
+    display: block;
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-text);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text);
+  }
+
+  .post-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .post-author {
+    color: var(--color-primary);
+  }
+
+  .post-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .post-excerpt {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+</style>

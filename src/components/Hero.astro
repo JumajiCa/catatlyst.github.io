@@ -1,0 +1,67 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-title">Catalyst @ DVC</h1>
+      <p class="hero-description">
+        Our purpose is to foster a collaborative community of students at Diablo
+        Valley College poised to pursue scientific endeavors and jumpstart
+        careers in STEM.
+      </p>
+      <a href="https://dvc.campuslabs.com/engage/organization/catalyst" target="_blank" class="btn">Join Us!</a>
+    </div>
+    <div class="hero-image">
+      <img src={`${base}images/placeholder-hero.svg`} alt="Scenic landscape representing exploration and discovery" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-xl);
+    max-width: 400px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border-light);
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-description {
+      max-width: 100%;
+    }
+
+    .hero-image {
+      order: -1;
+    }
+  }
+</style>

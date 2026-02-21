@@ -1,0 +1,151 @@
+---
+const navLinks = [
+  { label: 'Team', href: '/team' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Discord', href: 'https://discord.gg/w4YCTxFQ' },
+  { label: 'Calendar', href: '/calendar' },
+];
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={base} class="logo-link">
+      <img src={`${base}images/catalyst-logo.svg`} alt="Catalyst logo" class="logo-icon" />
+      <span class="logo-text">Catalyst</span>
+    </a>
+    <button class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+    <nav class="main-nav" id="main-nav">
+      {navLinks.map(link => (
+        <a href={link.href.startsWith('http') || link.href.startsWith('#') ? link.href : `${base}${link.href.replace(/^\//, '')}`} class="nav-link">
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.mobile-toggle');
+  const nav = document.getElementById('main-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>
+
+<style>
+  .site-header {
+    background: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-text {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+  }
+
+  .nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+  }
+
+  .hamburger,
+  .hamburger::before,
+  .hamburger::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    transition: transform 0.3s ease;
+  }
+
+  .hamburger {
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .hamburger::before { top: -7px; }
+  .hamburger::after  { top:  7px; }
+
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: block;
+    }
+
+    .main-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      flex-direction: column;
+      padding: var(--spacing-md) var(--spacing-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .main-nav.open {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: var(--spacing-xs) 0;
+      font-size: var(--font-size-base);
+    }
+  }
+</style>

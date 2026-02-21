@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Us" description="Get in touch with Catalyst Club at Diablo Valley College.">
+  <section class="contact-section">
+    <div class="container">
+      <h1 class="section-title">Contact Us</h1>
+      <p class="section-subtitle">We'd love to hear from you. Reach out through any of the channels below.</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <h3>Email</h3>
+          <p><a href="mailto:catalyst@dvc.edu">catalyst@dvc.edu</a></p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3>Location</h3>
+          <p>Science & Health Student Center - PL 101</p>
+          <p>Diablo Valley College</p>
+          <p>Pleasant Hill, CA 94523</p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"/>
+            </svg>
+          </div>
+          <h3>Discord</h3>
+          <p>Join our Discord server to connect with club members and stay in the loop.</p>
+          <a href="https://discord.gg/w4YCTxFQ" target="_blank" class="btn" style="margin-top: var(--spacing-sm);">Join Discord</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .contact-card {
+    text-align: center;
+    padding: var(--spacing-xl);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-lg);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .contact-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .contact-icon {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .contact-card h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .contact-card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .contact-card a:not(.btn) {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

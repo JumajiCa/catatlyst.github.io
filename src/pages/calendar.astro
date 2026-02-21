@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CalendarWidget from '../components/CalendarWidget';
+---
+
+<BaseLayout title="Calendar" description="View upcoming Catalyst Club events and meetings.">
+  <section class="calendar-section">
+    <div class="container">
+      <h1 class="section-title">Upcoming Events</h1>
+      <p class="section-subtitle">Stay up to date with meetings, workshops, and club activities.</p>
+      <div class="calendar-wrapper">
+        <CalendarWidget client:load />
+      </div>
+      <p class="calendar-note">
+        Events are synced from the club's Google Calendar. If no events appear,
+        the calendar may not yet be configured — see the setup instructions in the source code.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .calendar-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .calendar-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .calendar-note {
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-lg);
+  }
+
+  /* FullCalendar theme overrides */
+  .calendar-wrapper :global(.fc) {
+    --fc-border-color: var(--color-border-light);
+    --fc-button-bg-color: var(--color-primary);
+    --fc-button-border-color: var(--color-primary);
+    --fc-button-hover-bg-color: var(--color-primary-dark);
+    --fc-button-hover-border-color: var(--color-primary-dark);
+    --fc-button-active-bg-color: var(--color-primary-dark);
+    --fc-button-active-border-color: var(--color-primary-dark);
+    --fc-today-bg-color: rgba(45, 106, 79, 0.08);
+    font-family: var(--font-family);
+  }
+
+  .calendar-wrapper :global(.fc .fc-toolbar-title) {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+
+  .calendar-wrapper :global(.fc .fc-button) {
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    padding: 0.4em 0.8em;
+  }
+
+  .calendar-wrapper :global(.fc .fc-daygrid-day-number) {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+  }
+</style>

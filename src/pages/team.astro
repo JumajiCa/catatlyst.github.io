@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamMember from '../components/TeamMember.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const officers = [
+  { name: 'Alina Murphy', role: 'President', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Savannah Stachelek', role: 'Vice President', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Ember Storm', role: 'Outreach Lead', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Emma Hughes', role: 'Marketing Lead', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Jenna Manuel', role: 'Treasurer', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Ian Flores', role: 'Events Coordinator', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+  { name: 'Amen Yi Zhu Zhu', role: 'Secretary', bio: 'Flavour Text', image: `${base}images/placeholder-portrait.svg` },
+];
+---
+
+<BaseLayout title="Our Team" description="Meet the officers of Catalyst Club at Diablo Valley College.">
+  <section class="team-section">
+    <div class="container">
+      <h1 class="section-title">Our Team</h1>
+      <p class="section-subtitle">Meet the officers driving Catalyst forward.</p>
+      <div class="team-grid">
+        {officers.map(officer => (
+          <TeamMember
+            name={officer.name}
+            role={officer.role}
+            bio={officer.bio}
+            image={officer.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .team-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  @media (max-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    category: 'Research Tools',
+    items: [
+      { name: 'Google Scholar', url: 'https://scholar.google.com', description: 'Search scholarly literature across many disciplines and sources.' },
+      { name: 'arXiv', url: 'https://arxiv.org', description: 'Open-access preprint repository for physics, math, CS, and more.' },
+      { name: 'Zotero', url: 'https://www.zotero.org', description: 'Free reference management tool to organize your research sources.' },
+    ],
+  },
+  {
+    category: 'Learning & Development',
+    items: [
+      { name: 'Khan Academy', url: 'https://www.khanacademy.org', description: 'Free courses in math, science, and computing.' },
+      { name: 'MIT OpenCourseWare', url: 'https://ocw.mit.edu', description: 'Free lecture notes, exams, and videos from MIT.' },
+      { name: 'Coursera', url: 'https://www.coursera.org', description: 'Online courses from top universities and companies.' },
+    ],
+  },
+  {
+    category: 'Campus Resources',
+    items: [
+      { name: 'DVC Library', url: 'https://www.dvc.edu/library', description: 'Access databases, journals, and research support at DVC.' },
+      { name: 'DVC STEM Center', url: 'https://www.dvc.edu/stem', description: 'Tutoring, study spaces, and STEM support services.' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Resources" description="Useful tools, links, and resources for Catalyst Club members.">
+  <section class="resources-section">
+    <div class="container">
+      <h1 class="section-title">Resources</h1>
+      <p class="section-subtitle">Useful tools and links to support your research and studies.</p>
+
+      {resources.map(group => (
+        <div class="resource-group">
+          <h2 class="group-title">{group.category}</h2>
+          <div class="resource-list">
+            {group.items.map(item => (
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="resource-card">
+                <h3 class="resource-name">{item.name}</h3>
+                <p class="resource-desc">{item.description}</p>
+                <span class="resource-link-text">Visit &rarr;</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .resources-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .resource-group {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .group-title {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-border-light);
+  }
+
+  .resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+  }
+
+  .resource-card {
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-lg);
+    color: var(--color-text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resource-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text);
+  }
+
+  .resource-name {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .resource-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .resource-link-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-top: var(--spacing-sm);
+  }
+</style>

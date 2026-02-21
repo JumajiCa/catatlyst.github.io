@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#e8f0e8"/>
+  <path d="M0 350 L200 200 L350 280 L550 150 L800 250 L800 500 L0 500Z" fill="#2D6A4F" opacity="0.3"/>
+  <path d="M0 400 L300 300 L500 350 L800 280 L800 500 L0 500Z" fill="#2D6A4F" opacity="0.2"/>
+  <circle cx="650" cy="100" r="40" fill="#2D6A4F" opacity="0.15"/>
+  <text x="400" y="460" text-anchor="middle" fill="#2D6A4F" font-family="sans-serif" font-size="18" opacity="0.6">Hero Image Placeholder</text>
+</svg>
